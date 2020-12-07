@@ -8,7 +8,6 @@ db.stocks.insertMany([
     quantity: 1500,
     date: '2020-12-06',
     purchasedPrice: 100,
-    currentPrice: 125,
   },
   {
     symbol: 'TSLA',
@@ -16,6 +15,5 @@ db.stocks.insertMany([
     quantity: 2000,
     date: '2020-03-04',
     purchasedPrice: 500,
-    currentPrice: 700,
   },
 ])
