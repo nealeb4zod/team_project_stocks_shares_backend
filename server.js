@@ -12,10 +12,10 @@ const createRouter = require('./helpers/create_router.js');
 
 MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true })
   .then((client) => {
-    const db = client.db('stocks');
-    const stockCollection = db.collection('stock');
-    const stockRouter = createRouter(stockCollection);
-    app.use('/api/stock', stockRouter);
+    const db = client.db('investments');
+    const stocksCollection = db.collection('stocks');
+    const stocksRouter = createRouter(stocksCollection);
+    app.use('/api/stocks', stocksRouter);
   })
   .catch(console.err);
 
