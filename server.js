@@ -10,7 +10,7 @@ app.use(cors());
 const MongoClient = require('mongodb').MongoClient;
 const createRouter = require('./helpers/create_router.js');
 
-MongoClient.connect('mongodb://localhost:27017')
+MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true })
   .then((client) => {
     const db = client.db('stocks');
     const stockCollection = db.collection('stock');
