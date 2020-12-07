@@ -1,7 +1,7 @@
-use stocks;
+use investments;
 db.dropDatabase();
 
-db.stock.insertMany([
+db.stocks.insertMany([
   {
     symbol: 'AAPL',
     name: 'APPLE',
