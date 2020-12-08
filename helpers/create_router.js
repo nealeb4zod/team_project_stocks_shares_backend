@@ -19,7 +19,7 @@ const createRouter = function (collection) {
   router.get('/:id', (req, res) => {
     const id = req.params.id;
     collection
-      .findOne({ _id: ObjectID(id) })
+      .findOne({ userName: id })
       .then((doc) => res.json(doc))
       .catch((err) => {
         console.error(err);
@@ -42,10 +42,30 @@ const createRouter = function (collection) {
       });
   });
 
+  router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    const updatedData = req.body;
+    delete updatedData._id;
+
+    collection
+      .findOneAndUpdate(
+        { userName: id },
+        { $push: { stocks: updatedData } },
+        { returnOriginal: false }
+      )
+      .then((result) => {
+        res.json(result.value);
+      })
+      .catch((err) => {
+        res.status(500);
+        res.json({ status: 500, error: err });
+      });
+  });
+
   router.delete('/:id', (req, res) => {
     const id = req.params.id;
     collection
-      .deleteOne({ _id: ObjectID(id) })
+      .deleteOne({ userName: id })
       .then((result) => {
         res.json(result);
       })
