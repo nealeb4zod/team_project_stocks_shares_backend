@@ -38,8 +38,11 @@ iexRouter.get('/chart/:id', (req, res) => {
     .then((jsonData) => jsonData.json())
     .then((data) =>
       res.json(
-        data.map((closeValue) => {
-          return closeValue.close;
+        data.map((filteredData) => {
+          return {
+            closeValue: filteredData.close,
+            closeValueDate: filteredData.date,
+          };
         })
       )
     );
